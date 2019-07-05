@@ -45,3 +45,73 @@ In de Arduino IDE ga naar "Examples" - "From Libraries", klik op "Firmata" en ki
 Upload de Firmata-sketch naar de Arduino.
 
 ![Firmata klaar](.README/FirmataDone.png)
+
+Nu is onze Arduino helemaal klaar om te praten met ons. We moeten natuurlijk wel nog een programma schrijven dat praat met de Arduino!
+
+## Python script
+
+### IDE
+
+De IDE, of Integrated Development Environment, is een programma dat ons helpt met onze code. Je kan natuurlijk alles gewoon in een teksteditor typen maar IDE's maken ons het leven makkelijker door extra functies aan te bieden die een programmeur helpen sneller en aangenamer te werken. Ieder mag vrij zijn IDE kiezen, hier ga ik eens [Thonny](https://thonny.org/) gebruiken maar probeer gerust eens [Visual Studio Code](https://code.visualstudio.com/), Idle, [PyCharm](https://www.jetbrains.com/pycharm/), ....
+
+![Thonny](.README/ThonnyLeeg.png)
+
+### Code
+
+Eerst importeren we een bibliotheek die ons Firmata laat praten, in dit geval *pyfirmata*.
+
+```python
+import pyfirmata
+```
+
+Waarschijnlijk krijg je een foutmelding:
+
+![no pyfirmata](.README/nopyfirmata.png)
+
+> ModuleNotFoundError: No module named 'pyfirmata'
+
+De bibliotheek is nog niet geïnstalleerd op ons systeem! Gelukkig is het makkelijk dit te doen, typ in de console `pip install pyfirmata` of in Thonny kan je ook naar "Tools" - "Manage Packages" gaan, daar zoeken naar *pyfirmata* en vervolgens *Install* klikken.
+
+![install pyfirmata](.README/installpyfirmata.png)
+
+Nu zijn we helemaal klaar met alles voorbereiden en kunnen we er echt invliegen.
+
+## Nu echt code
+
+Importeer de bibliotheek:
+
+```python
+import pyfirmata
+```
+
+Initialiseer een Arduino-object:
+
+```python
+arduino = pyfirmata.Arduino('/dev/ttyACM0')
+```
+
+> Let op: op mijn (Linux)-machine zit het bordje op poort `/dev/ttyACM0`, zit je op Windows dan is het waarschijnlijk iets als `COM3`, pas dit aan in de code!
+
+Laat het ledje op het bord branden door de pin "hoog" te maken.
+
+```python
+arduino.digital[13].write(1)
+```
+
+Op de Arduino zit één ledje op het bord dat aangesloten is op poort 13, vandaar de `digital[13]` in de code. Straks gaan we meer ledjes aansluiten en meer poorten gebruiken. Met de functie `.write()` schrijven we een waarde naar de uitgang, hier is dat een **1** wat wil zeggen dat we spanning gaan geven op poort 13.
+
+Het volledige script ziet er nu zo uit:
+
+```python
+import pyfirmata
+
+arduino = pyfirmata.Arduino('/dev/ttyACM0')
+
+arduino.digital[13].write(1)
+```
+
+Als je dit uitvoert en je hebt alles correct gedaan dan gaat op het bordje het ledje aan. Het kan even flikkeren tijdens de communicatie, dit is normaal. 
+
+
+
+Probeer het nu eens terug uit te doen.
