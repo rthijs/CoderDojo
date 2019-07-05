@@ -38,4 +38,10 @@ Als het ledje op de Arduino knippert is alles in orde, als je foutmeldingen krij
 
 ## Upload de Firmata-sketch
 
-In de Arduino IDE ga naar 
+In de Arduino IDE ga naar "Examples" - "From Libraries", klik op "Firmata" en kies "Standard Firmata".
+
+![Firmata](.README/Firmata.png)
+
+Upload de Firmata-sketch naar de Arduino.
+
+![Firmata klaar](.README/FirmataDone.png)
