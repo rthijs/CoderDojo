@@ -64,13 +64,13 @@ Eerst importeren we een bibliotheek die ons Firmata laat praten, in dit geval *p
 import pyfirmata
 ```
 
-Waarschijnlijk krijg je een foutmelding:
+Als je dit uitvoert krijg je waarschijnlijk een foutmelding:
 
 ![no pyfirmata](.README/nopyfirmata.png)
 
 > ModuleNotFoundError: No module named 'pyfirmata'
 
-De bibliotheek is nog niet geïnstalleerd op ons systeem! Gelukkig is het makkelijk dit te doen, typ in de console `pip install pyfirmata` of in Thonny kan je ook naar "Tools" - "Manage Packages" gaan, daar zoeken naar *pyfirmata* en vervolgens *Install* klikken.
+De bibliotheek is nog niet geïnstalleerd op ons systeem! Gelukkig is het makkelijk dit te doen, typ in de console `pip install pyfirmata`, in Thonny ga je naar "Tools" - "Manage Packages", zoek naar *pyfirmata* en klik *Install*.
 
 ![install pyfirmata](.README/installpyfirmata.png)
 
@@ -112,6 +112,30 @@ arduino.digital[13].write(1)
 
 Als je dit uitvoert en je hebt alles correct gedaan dan gaat op het bordje het ledje aan. Het kan even flikkeren tijdens de communicatie, dit is normaal. 
 
-
-
 Probeer het nu eens terug uit te doen.
+
+### 3 ledjes
+
+Laten we eens wat componenten aansluiten. Ik heb 3 ledjes genomen en met wat fantasie kan je er een verkeerslicht in zien.
+
+![verkeerslicht](.README/verkeerslicht.jpg)
+
+Sluit de componenten aan als volgt:
+
+![verkeerslicht sktech](.README/verkeerslichtSketch.png)
+
+Let op de polariteit van de ledjes, het korte pootje (*kathode*) moet aan de **GND** (ground, aarde of massa) komen, de weerstanden zijn 220 Ohm.
+
+![verkeerslicht schema](.README/verkeerslichtSchema.png)
+
+### Verkeerslicht code
+
+Probeer, voor je naar [een mogelijke oplossing](verkeerslicht.py) gaat kijken, eens of je code kan schrijven om de ledjes aan te sturen zodat ze zich gedragen als een verkeerslicht.
+
+Vergeet niet van `pyfirmata` te importeren en `time` ga je ook nodig hebben, zodat je `time.sleep()` kan gebruiken. Als je 1 seconde niets wil doen gebruik je `time.sleep(1)`.
+
+Doe de ledjes aan en uit met `arduino.digital[<POORTNUMMER>].write(<1|0>)`.
+
+Veel succes!
+
+![verkeerslicht](.README/verkeerslicht.gif)

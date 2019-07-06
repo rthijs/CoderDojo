@@ -1,4 +1,5 @@
 import pyfirmata
+import time
 
 arduino = pyfirmata.Arduino('/dev/ttyACM0')
 
