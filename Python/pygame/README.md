@@ -50,7 +50,7 @@ Eerst gaan we ons "probleem" opsplitsen in kleine stapjes. We willen en spel mak
     5. Iets laten bewegen met toetsenbordcommando's
     6. ...
 
-Als we op dit punt gekomen zijn verzinnen we dan wel weer iets, de bedoeling nu is van te kunnen starten en iets hebben om naar toe te werken.
+Als we op dit punt gekomen zijn verzinnen we dan wel weer iets, de bedoeling nu is kunnen starten en iets hebben om naar toe te werken.
 
 ## 2. Een PyGame venster tonen
 
@@ -92,3 +92,39 @@ VENSTER_HOOGTE = 480
 
 spel_venster = pygame.display.set_mode((VENSTER_BREEDTE, VENSTER_HOOGTE))
 ```
+
+Het resultaat is niet echt spannend:
+
+![leeg venster](.README/pygameLeeg.png)
+
+Maar ik heb geen errors dus alles gaat goed! 
+
+Het venster sluiten gaat niet zoals je merkt, gebruik de rode stopknop van Thonny. Dat moeten we nog fiksen. Met een extra statement `pygame.quit()` sluiten we het PyGame-venster.
+
+Als je het programma uitvoert merk je dat er even een zwart venster getoont wordt dat dan meteen afsluit. We moeten dus alles wat willen doen uitvoeren na het initialiseren, dat is al het voorbereidende werk zoals nuttige variabelen definiëren, en het `pygame.quit()` statement, dat heel de boel afsluit.
+
+```python
+import pygame
+
+pygame.init()
+
+VENSTER_BREEDTE = 640
+VENSTER_HOOGTE = 480
+
+spel_venster = pygame.display.set_mode((VENSTER_BREEDTE, VENSTER_HOOGTE))
+
+# Hier dingen doen!
+
+pygame.quit()
+```
+
+## De game-loop
+
+De game loop is een simpele herhaling die al onze logica voor het spel bevat. Deze gaat steeds opnieuw uitgevoerd worden om meerdere keren per seconde onze game te verversen, net zoals een film bestaat uit meerdere beelden per seconde. Om deze te bouwen hebben we eerst nog wat andere zaken nodig:
+
+ - een klok, elke tik van de klok verversen we het scherm
+ - de spelstatus, om te weten of we nog aan het spelen zijn
+ - events, gebeurtenissen die acties in gang zetten
+ - een game-loop, die al het bovenstaande bevat en elke kloktik uitgevoerd wordt.
+
+### De klok
